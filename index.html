@@ -40,28 +40,41 @@
             color: var(--text-dark);
         }
 
+        /* Clean Glass Effect */
         .glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .dark-glass {
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        .dark-glass {
+            background: rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Clean Cards */
         .card {
             background: var(--card-light);
             border-radius: 20px;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .dark-card {
             background: var(--card-dark);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .accent-bg {
@@ -72,15 +85,16 @@
             background: var(--accent-dark);
         }
 
+        /* Clean Gradients */
         .gradient-text {
-            background: linear-gradient(135deg, #007AFF, #5856D6);
+            background: linear-gradient(135deg, #007AFF, #0056CC);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .gradient-bg {
-            background: linear-gradient(135deg, #007AFF, #5856D6);
+            background: linear-gradient(135deg, #007AFF, #0056CC);
         }
 
         .hero-gradient {
@@ -91,14 +105,16 @@
             background: linear-gradient(135deg, #000000 0%, #1D1D1F 100%);
         }
 
+        /* Clean Skill Icons */
         .skill-icon {
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .skill-icon:hover {
             transform: translateY(-8px);
         }
 
+        /* Clean Theme Toggle */
         .theme-toggle {
             width: 44px;
             height: 44px;
@@ -117,16 +133,11 @@
             color: #e2e8f0;
         }
 
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+        .theme-toggle:hover {
+            transform: scale(1.1);
         }
 
-        .dark-section-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-        }
-
+        /* Clean Animations */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -149,6 +160,7 @@
             transform: translateY(0);
         }
 
+        /* Clean Floating Animation */
         .floating {
             animation: floating 6s ease-in-out infinite;
         }
@@ -159,64 +171,90 @@
             100% { transform: translateY(0px); }
         }
 
+        /* Clean Pulse Animation */
         .pulse {
-            animation: pulse 2s infinite;
+            animation: pulse 3s infinite;
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(0, 122, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 122, 255, 0); }
+            0% { 
+                box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.4);
+            }
+            70% { 
+                box-shadow: 0 0 0 15px rgba(0, 122, 255, 0);
+            }
+            100% { 
+                box-shadow: 0 0 0 0 rgba(0, 122, 255, 0);
+            }
         }
 
+        /* Clean Blob Animations */
         .blob {
             position: absolute;
             border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.7;
+            filter: blur(50px);
+            opacity: 0.6;
             z-index: -1;
+            animation: blobFloat 20s ease-in-out infinite;
         }
 
+        .blob-1 {
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            animation-delay: -7s;
+        }
+
+        @keyframes blobFloat {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+
+        /* Clean Scroll Indicator */
         .scroll-indicator {
             position: absolute;
-            bottom: 30px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
-            width: 30px;
-            height: 50px;
-            border: 2px solid rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding-top: 10px;
-        }
-
-        .dark-mode .scroll-indicator {
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(0, 122, 255, 0.8), transparent);
+            border-radius: 1px;
         }
 
         .scroll-indicator::before {
             content: '';
-            width: 4px;
-            height: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 2px;
-            animation: scroll 2s infinite;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: #007AFF;
+            border-radius: 1px;
+            animation: scrollIndicator 2s infinite;
+        }
+
+        .dark-mode .scroll-indicator {
+            background: linear-gradient(to bottom, rgba(90, 200, 250, 0.8), transparent);
         }
 
         .dark-mode .scroll-indicator::before {
-            background: rgba(255, 255, 255, 0.5);
+            background: #5AC8FA;
         }
 
-        @keyframes scroll {
+        @keyframes scrollIndicator {
             0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(15px); opacity: 0; }
+            100% { transform: translateY(40px); opacity: 0; }
         }
 
+        /* Clean Navigation */
         .nav-link {
             position: relative;
             overflow: hidden;
+            padding: 8px 0;
         }
 
         .nav-link::after {
@@ -226,7 +264,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary);
+            background: #007AFF;
             transition: width 0.3s ease;
         }
 
@@ -234,9 +272,11 @@
             width: 100%;
         }
 
+        /* Clean Timeline */
         .timeline-item {
             position: relative;
             padding-left: 30px;
+            margin-bottom: 20px;
         }
 
         .timeline-item::before {
@@ -247,30 +287,87 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: var(--primary);
+            background: #007AFF;
         }
 
+        /* Clean Tech Tags */
         .tech-tag {
             display: inline-block;
             padding: 6px 14px;
-            border-radius: 20px;
+            border-radius: 16px;
             font-size: 0.85rem;
             font-weight: 500;
             transition: all 0.3s ease;
             background: rgba(0, 122, 255, 0.1);
             color: #007AFF;
+            border: 1px solid rgba(0, 122, 255, 0.2);
+        }
+
+        .tech-tag:hover {
+            transform: translateY(-2px);
+            background: rgba(0, 122, 255, 0.15);
         }
 
         .dark-mode .tech-tag {
-            background: rgba(0, 122, 255, 0.2);
+            background: rgba(0, 122, 255, 0.15);
             color: #5AC8FA;
+            border: 1px solid rgba(0, 122, 255, 0.3);
+        }
+
+        /* Clean Button Styles */
+        .btn-primary {
+            background: #007AFF;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #0056CC;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 122, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1D1D1F;
+            padding: 14px 28px;
+            border-radius: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .btn-secondary {
+            background: rgba(30, 30, 30, 0.9);
+            color: #F5F5F7;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section Reveal Animation */
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .section-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body class="bg-white text-gray-900">
-    <!-- Animated Background Blobs -->
+    <!-- Clean Background Elements -->
     <div class="blob blob-1" style="width: 500px; height: 500px; background: #007AFF; top: -200px; right: -200px;"></div>
-    <div class="blob blob-2" style="width: 400px; height: 400px; background: #5856D6; bottom: -150px; left: -150px;"></div>
+    <div class="blob blob-2" style="width: 400px; height: 400px; background: #0056CC; bottom: -150px; left: -150px;"></div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 py-4 px-6">
@@ -313,20 +410,23 @@
         <div class="hero-gradient absolute inset-0 z-0 dark-mode:dark-hero-gradient"></div>
         <div class="container mx-auto px-6 text-center relative z-10">
             <div class="max-w-4xl mx-auto">
-                <div class="floating mb-8">
-                    <h1 class="text-5xl md:text-7xl font-bold mb-6">BI & Data Engineer</h1>
-                    <p class="text-xl md:text-2xl text-gray-600 dark-mode:text-gray-400 mb-10 max-w-2xl mx-auto">
-                        4+ years creating data pipelines and storytelling dashboards
+                <div class="floating mb-12">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6 text-gray-900 dark:text-white">
+                        BI & Data Engineer
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-600 dark-mode:text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                        4+ years creating <span class="font-semibold text-blue-600 dark:text-blue-400">data pipelines</span> and 
+                        <span class="font-semibold text-blue-600 dark:text-blue-400">storytelling dashboards</span>
                     </p>
                 </div>
                 <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
-                    <a href="#experience" class="bg-gray-900 dark-mode:bg-white text-white dark-mode:text-gray-900 px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg font-medium flex items-center justify-center">
+                    <a href="#experience" class="btn-primary flex items-center justify-center">
                         <span>View Experience</span>
-                        <i class="fas fa-arrow-right ml-2"></i>
+                        <i class="fas fa-arrow-right ml-3"></i>
                     </a>
-                    <a href="#contact" class="bg-white dark-mode:bg-gray-800 text-gray-900 dark-mode:text-white border border-gray-300 dark-mode:border-gray-600 px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg font-medium flex items-center justify-center">
+                    <a href="#contact" class="btn-secondary flex items-center justify-center">
                         <span>Contact Me</span>
-                        <i class="fas fa-envelope ml-2"></i>
+                        <i class="fas fa-envelope ml-3"></i>
                     </a>
                 </div>
             </div>
@@ -337,11 +437,13 @@
     <!-- About Section -->
     <section id="about" class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-16 text-center fade-in">Professional Summary</h2>
+            <h2 class="text-4xl font-bold mb-16 text-center section-reveal">Professional Summary</h2>
             <div class="max-w-4xl mx-auto">
-                <div class="card p-8 md:p-12 rounded-3xl shadow-sm mb-12 fade-in dark-mode:dark-card">
+                <div class="card p-8 md:p-12 rounded-3xl mb-12 section-reveal dark-mode:dark-card">
                     <p class="text-xl text-gray-700 dark-mode:text-gray-300 mb-6 leading-relaxed">
-                        Motivated and results-driven BI Developer and Data Engineer with a proven track record in business intelligence, data engineering, data warehouse, and data analytics projects.
+                        Motivated and results-driven <span class="font-semibold text-blue-600 dark:text-blue-400">BI Developer</span> and 
+                        <span class="font-semibold text-blue-600 dark:text-blue-400">Data Engineer</span> with a proven track record in 
+                        business intelligence, data engineering, data warehouse, and data analytics projects.
                     </p>
                     <p class="text-xl text-gray-700 dark-mode:text-gray-300 leading-relaxed">
                         Seeking to leverage my experience creating data pipelines to build storytelling dashboards and solve challenging data problems in a new role.
@@ -349,23 +451,23 @@
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="card p-8 rounded-3xl shadow-sm text-center stagger-item dark-mode:dark-card">
-                        <div class="w-20 h-20 bg-blue-100 dark-mode:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-database text-blue-600 dark-mode:text-blue-400 text-3xl"></i>
+                    <div class="card p-8 rounded-3xl text-center stagger-item dark-mode:dark-card">
+                        <div class="w-20 h-20 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-database text-blue-600 dark:text-blue-400 text-3xl"></i>
                         </div>
                         <h3 class="text-2xl font-semibold mb-4">Data Engineering</h3>
                         <p class="text-gray-600 dark-mode:text-gray-400">Expertise in ETL/ELT pipelines, Azure Data Factory, and data processing systems</p>
                     </div>
-                    <div class="card p-8 rounded-3xl shadow-sm text-center stagger-item dark-mode:dark-card">
-                        <div class="w-20 h-20 bg-green-100 dark-mode:bg-green-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-chart-line text-green-600 dark-mode:text-green-400 text-3xl"></i>
+                    <div class="card p-8 rounded-3xl text-center stagger-item dark-mode:dark-card">
+                        <div class="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-chart-line text-green-600 dark:text-green-400 text-3xl"></i>
                         </div>
                         <h3 class="text-2xl font-semibold mb-4">Business Intelligence</h3>
                         <p class="text-gray-600 dark-mode:text-gray-400">Creating storytelling dashboards with Power BI, DAX, and data modeling</p>
                     </div>
-                    <div class="card p-8 rounded-3xl shadow-sm text-center stagger-item dark-mode:dark-card">
-                        <div class="w-20 h-20 bg-purple-100 dark-mode:bg-purple-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-cogs text-purple-600 dark-mode:text-purple-400 text-3xl"></i>
+                    <div class="card p-8 rounded-3xl text-center stagger-item dark-mode:dark-card">
+                        <div class="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-cogs text-gray-600 dark:text-gray-400 text-3xl"></i>
                         </div>
                         <h3 class="text-2xl font-semibold mb-4">Data Management</h3>
                         <p class="text-gray-600 dark-mode:text-gray-400">Database design, data structures, data migrations, and integrations</p>
@@ -378,11 +480,11 @@
     <!-- Experience Section -->
     <section id="experience" class="py-20 accent-bg dark-mode:dark-accent-bg">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-16 text-center fade-in">Professional Experience</h2>
+            <h2 class="text-4xl font-bold mb-16 text-center section-reveal">Professional Experience</h2>
             
             <div class="max-w-4xl mx-auto space-y-12">
-                <!-- Experience 1 -->
-                <div class="card p-8 rounded-3xl shadow-sm fade-in dark-mode:dark-card">
+                <!-- Technology-Consulting -->
+                <div class="card p-8 rounded-3xl section-reveal dark-mode:dark-card">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
                         <div>
                             <h3 class="text-2xl font-semibold">Technology-Consulting</h3>
@@ -412,8 +514,8 @@
                     </div>
                 </div>
                 
-                <!-- Experience 2 -->
-                <div class="card p-8 rounded-3xl shadow-sm fade-in dark-mode:dark-card">
+                <!-- Oriental Insurance -->
+                <div class="card p-8 rounded-3xl section-reveal dark-mode:dark-card">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
                         <div>
                             <h3 class="text-2xl font-semibold">Oriental Insurance</h3>
@@ -443,14 +545,14 @@
                     </div>
                 </div>
                 
-                <!-- Experience 3 -->
-                <div class="card p-8 rounded-3xl shadow-sm fade-in dark-mode:dark-card">
+                <!-- Greentech India -->
+                <div class="card p-8 rounded-3xl section-reveal dark-mode:dark-card">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
                         <div>
                             <h3 class="text-2xl font-semibold">Greentech India</h3>
                             <p class="text-gray-600 dark-mode:text-gray-400 text-lg">Data Engineer</p>
                         </div>
-                        <span class="text-purple-600 dark-mode:text-purple-400 font-medium mt-2 md:mt-0 bg-purple-100 dark-mode:bg-purple-900/30 px-4 py-2 rounded-full">Dec 2018 - May 2019</span>
+                        <span class="text-gray-600 dark-mode:text-gray-400 font-medium mt-2 md:mt-0 bg-gray-100 dark-mode:bg-gray-800 px-4 py-2 rounded-full">Dec 2018 - May 2019</span>
                     </div>
                     <ul class="space-y-4 mt-6">
                         <li class="timeline-item text-gray-700 dark-mode:text-gray-300">
@@ -480,7 +582,7 @@
     <!-- Skills Section -->
     <section id="skills" class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-16 text-center fade-in">Technical Skills</h2>
+            <h2 class="text-4xl font-bold mb-16 text-center section-reveal">Technical Skills</h2>
             
             <div class="max-w-4xl mx-auto">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
@@ -489,7 +591,7 @@
                         <h3 class="font-semibold text-lg">Azure Data Factory</h3>
                     </div>
                     <div class="skill-icon text-center p-8 rounded-3xl card stagger-item dark-mode:dark-card">
-                        <i class="fas fa-chart-bar text-yellow-600 dark-mode:text-yellow-400 text-5xl mb-6"></i>
+                        <i class="fas fa-chart-bar text-blue-600 dark-mode:text-blue-400 text-5xl mb-6"></i>
                         <h3 class="font-semibold text-lg">Power BI</h3>
                     </div>
                     <div class="skill-icon text-center p-8 rounded-3xl card stagger-item dark-mode:dark-card">
@@ -497,31 +599,31 @@
                         <h3 class="font-semibold text-lg">SQL & T-SQL</h3>
                     </div>
                     <div class="skill-icon text-center p-8 rounded-3xl card stagger-item dark-mode:dark-card">
-                        <i class="fas fa-project-diagram text-purple-600 dark-mode:text-purple-400 text-5xl mb-6"></i>
+                        <i class="fas fa-project-diagram text-blue-600 dark-mode:text-blue-400 text-5xl mb-6"></i>
                         <h3 class="font-semibold text-lg">Data Modeling</h3>
                     </div>
                     <div class="skill-icon text-center p-8 rounded-3xl card stagger-item dark-mode:dark-card">
-                        <i class="fas fa-code text-red-600 dark-mode:text-red-400 text-5xl mb-6"></i>
+                        <i class="fas fa-code text-blue-600 dark-mode:text-blue-400 text-5xl mb-6"></i>
                         <h3 class="font-semibold text-lg">DAX & Power Query</h3>
                     </div>
                     <div class="skill-icon text-center p-8 rounded-3xl card stagger-item dark-mode:dark-card">
-                        <i class="fas fa-stream text-indigo-600 dark-mode:text-indigo-400 text-5xl mb-6"></i>
+                        <i class="fas fa-stream text-blue-600 dark-mode:text-blue-400 text-5xl mb-6"></i>
                         <h3 class="font-semibold text-lg">ETL/ELT Pipelines</h3>
                     </div>
                     <div class="skill-icon text-center p-8 rounded-3xl card stagger-item dark-mode:dark-card">
-                        <i class="fas fa-warehouse text-teal-600 dark-mode:text-teal-400 text-5xl mb-6"></i>
+                        <i class="fas fa-warehouse text-blue-600 dark-mode:text-blue-400 text-5xl mb-6"></i>
                         <h3 class="font-semibold text-lg">Data Warehousing</h3>
                     </div>
                     <div class="skill-icon text-center p-8 rounded-3xl card stagger-item dark-mode:dark-card">
-                        <i class="fas fa-synapse text-pink-600 dark-mode:text-pink-400 text-5xl mb-6"></i>
+                        <i class="fas fa-synapse text-blue-600 dark-mode:text-blue-400 text-5xl mb-6"></i>
                         <h3 class="font-semibold text-lg">Azure Synapse</h3>
                     </div>
                 </div>
                 
                 <!-- Skill Tags -->
                 <div class="mt-12">
-                    <h3 class="text-2xl font-semibold mb-8 text-center fade-in">Technologies & Tools</h3>
-                    <div class="flex flex-wrap justify-center gap-3 fade-in">
+                    <h3 class="text-2xl font-semibold mb-8 text-center section-reveal">Technologies & Tools</h3>
+                    <div class="flex flex-wrap justify-center gap-3 section-reveal">
                         <span class="tech-tag">Azure Data Factory</span>
                         <span class="tech-tag">Power BI</span>
                         <span class="tech-tag">SQL Server</span>
@@ -541,10 +643,10 @@
     <!-- Education Section -->
     <section id="education" class="py-20 accent-bg dark-mode:dark-accent-bg">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-16 text-center fade-in">Education</h2>
+            <h2 class="text-4xl font-bold mb-16 text-center section-reveal">Education</h2>
             
             <div class="max-w-2xl mx-auto">
-                <div class="card p-8 rounded-3xl shadow-sm mb-8 fade-in dark-mode:dark-card">
+                <div class="card p-8 rounded-3xl shadow-sm mb-8 section-reveal dark-mode:dark-card">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start">
                         <div>
                             <h3 class="text-2xl font-semibold">Masters of Science (MSc)</h3>
@@ -554,7 +656,7 @@
                     </div>
                 </div>
                 
-                <div class="card p-8 rounded-3xl shadow-sm fade-in dark-mode:dark-card">
+                <div class="card p-8 rounded-3xl shadow-sm section-reveal dark-mode:dark-card">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start">
                         <div>
                             <h3 class="text-2xl font-semibold">Bachelor's Degree</h3>
@@ -570,14 +672,14 @@
     <!-- Contact Section -->
     <section id="contact" class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-16 text-center fade-in">Get In Touch</h2>
+            <h2 class="text-4xl font-bold mb-16 text-center section-reveal">Get In Touch</h2>
             
-            <div class="max-w-2xl mx-auto bg-gradient-to-r from-blue-50 to-indigo-50 dark-mode:from-blue-900/20 dark-mode:to-indigo-900/20 p-10 rounded-3xl shadow-sm border border-blue-100 dark-mode:border-blue-800 fade-in">
+            <div class="max-w-2xl mx-auto bg-blue-50 dark-mode:bg-blue-900/20 p-10 rounded-3xl border border-blue-100 dark-mode:border-blue-800 section-reveal">
                 <p class="text-xl text-gray-700 dark-mode:text-gray-300 mb-8 text-center">
                     Interested in working together or have questions about my experience?
                 </p>
                 <div class="flex justify-center">
-                    <a href="mailto:siva.poranki@example.com" class="gradient-bg text-white px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg flex items-center font-medium pulse">
+                    <a href="mailto:siva.poranki@example.com" class="btn-primary pulse flex items-center">
                         <i class="fas fa-envelope mr-3"></i> Contact Me
                     </a>
                 </div>
@@ -612,7 +714,7 @@
     </footer>
 
     <script>
-        // Theme toggle functionality - FIXED VERSION
+        // Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = themeToggle.querySelector('i');
         const body = document.body;
@@ -635,7 +737,7 @@
             const blob1 = document.querySelector('.blob-1');
             const blob2 = document.querySelector('.blob-2');
             if (blob1) blob1.style.background = '#0056CC';
-            if (blob2) blob2.style.background = '#4A47A3';
+            if (blob2) blob2.style.background = '#003D99';
         }
         
         function disableDarkMode() {
@@ -648,7 +750,7 @@
             const blob1 = document.querySelector('.blob-1');
             const blob2 = document.querySelector('.blob-2');
             if (blob1) blob1.style.background = '#007AFF';
-            if (blob2) blob2.style.background = '#5856D6';
+            if (blob2) blob2.style.background = '#0056CC';
         }
         
         themeToggle.addEventListener('click', function() {
@@ -659,13 +761,13 @@
             }
         });
         
-        // Mobile menu toggle
+        // Mobile Menu Toggle
         document.getElementById('menu-toggle').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         });
 
-        // Smooth scrolling for anchor links
+        // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -689,9 +791,10 @@
             });
         });
 
-        // Fade in animation on scroll
+        // Scroll Animations
         const fadeElements = document.querySelectorAll('.fade-in');
         const staggerItems = document.querySelectorAll('.stagger-item');
+        const sectionReveals = document.querySelectorAll('.section-reveal');
         
         const fadeInOnScroll = () => {
             fadeElements.forEach(element => {
@@ -709,10 +812,19 @@
                 const elementVisible = 100;
                 
                 if (elementTop < window.innerHeight - elementVisible) {
-                    // Add delay based on index for staggered effect
                     setTimeout(() => {
                         item.classList.add('visible');
                     }, index * 100);
+                }
+            });
+            
+            // Section reveal animation
+            sectionReveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 200;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
                 }
             });
         };
@@ -721,14 +833,14 @@
         window.addEventListener('load', fadeInOnScroll);
         window.addEventListener('scroll', fadeInOnScroll);
         
-        // Parallax effect for background blobs
+        // Parallax Effect
         window.addEventListener('scroll', function() {
             const scrolled = window.pageYOffset;
             const blob1 = document.querySelector('.blob-1');
             const blob2 = document.querySelector('.blob-2');
             
-            if (blob1) blob1.style.transform = `translateY(${scrolled * 0.5}px)`;
-            if (blob2) blob2.style.transform = `translateY(${scrolled * -0.3}px)`;
+            if (blob1) blob1.style.transform = `translateY(${scrolled * 0.3}px)`;
+            if (blob2) blob2.style.transform = `translateY(${scrolled * -0.2}px)`;
         });
     </script>
 </body>
