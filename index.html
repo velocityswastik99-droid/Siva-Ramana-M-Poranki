@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siva Ramana M Poranki | BI & Data Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #007AFF;
+            --primary-dark: #0056CC;
+            --bg-light: #FFFFFF;
+            --text-light: #1D1D1F;
+            --bg-dark: #000000;
+            --text-dark: #F5F5F7;
+            --card-light: #F5F5F7;
+            --card-dark: #1D1D1F;
+            --accent-light: #E8E8ED;
+            --accent-dark: #2C2C2E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow-x: hidden;
+        }
+
+        body.dark-mode {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-glass {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card {
+            background: var(--card-light);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .dark-card {
+            background: var(--card-dark);
+        }
+
+        .accent-bg {
+            background: var(--accent-light);
+        }
+
+        .dark-accent-bg {
+            background: var(--accent-dark);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #F5F5F7 0%, #E8E8ED 100%);
+        }
+
+        .dark-hero-gradient {
+            background: linear-gradient(135deg, #000000 0%, #1D1D1F 100%);
+        }
+
+        .skill-icon {
+            transition: all 0.3s ease;
+        }
+
+        .skill-icon:hover {
+            transform: translateY(-8px);
+        }
+
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .dark-mode .theme-toggle {
+            background: #334155;
+            color: #e2e8f0;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+        }
+
+        .dark-section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .stagger-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 122, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 122, 255, 0); }
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.7;
+            z-index: -1;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 10px;
+        }
+
+        .dark-mode .scroll-indicator {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            width: 4px;
+            height: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 2px;
+            animation: scroll 2s infinite;
+        }
+
+        .dark-mode .scroll-indicator::before {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes scroll {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(15px); opacity: 0; }
+        }
+
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .tech-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: rgba(0, 122, 255, 0.1);
+            color: #007AFF;
+        }
+
+        .dark-mode .tech-tag {
+            background: rgba(0, 122, 255, 0.2);
+            color: #5AC8FA;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <!-- Animated Background Blobs -->
+    <div class="blob blob-1" style="width: 500px; height: 500px; background: #007AFF; top: -200px; right: -200px;"></div>
+    <div class="blob blob-2" style="width: 400px; height: 400px; background: #5856D6; bottom: -150px; left: -150px;"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 py-4 px-6">
+        <div class="container mx-auto">
+            <div class="glass rounded-2xl py-3 px-6 flex justify-between items-center dark-mode:dark-glass">
+                <div class="text-xl font-bold gradient-text">Siva Ramana M Poranki</div>
+                <div class="flex items-center space-x-6">
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#about" class="nav-link text-gray-700 dark-mode:text-gray-300 font-medium">About</a>
+                        <a href="#experience" class="nav-link text-gray-700 dark-mode:text-gray-300 font-medium">Experience</a>
+                        <a href="#skills" class="nav-link text-gray-700 dark-mode:text-gray-300 font-medium">Skills</a>
+                        <a href="#education" class="nav-link text-gray-700 dark-mode:text-gray-300 font-medium">Education</a>
+                        <a href="#contact" class="nav-link text-gray-700 dark-mode:text-gray-300 font-medium">Contact</a>
+                    </div>
+                    <div id="theme-toggle" class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="md:hidden">
+                        <button id="menu-toggle" class="text-gray-700 dark-mode:text-gray-300 focus:outline-none">
+                            <i class="fas fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 right-0 mt-2 mx-6">
+            <div class="glass rounded-2xl py-4 px-6 shadow-xl dark-mode:dark-glass">
+                <a href="#about" class="block py-3 text-gray-700 dark-mode:text-gray-300 font-medium border-b border-gray-200 dark-mode:border-gray-700">About</a>
+                <a href="#experience" class="block py-3 text-gray-700 dark-mode:text-gray-300 font-medium border-b border-gray-200 dark-mode:border-gray-700">Experience</a>
+                <a href="#skills" class="block py-3 text-gray-700 dark-mode:text-gray-300 font-medium border-b border-gray-200 dark-mode:border-gray-700">Skills</a>
+                <a href="#education" class="block py-3 text-gray-700 dark-mode:text-gray-300 font-medium border-b border-gray-200 dark-mode:border-gray-700">Education</a>
+                <a href="#contact" class="block py-3 text-gray-700 dark-mode:text-gray-300 font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+        <div class="hero-gradient absolute inset-0 z-0 dark-mode:dark-hero-gradient"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <div class="floating mb-8">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6">BI & Data Engineer</h1>
+                    <p class="text-xl md:text-2xl text-gray-600 dark-mode:text-gray-400 mb-10 max-w-2xl mx-auto">
+                        4+ years creating data pipelines and storytelling dashboards
+                    </p>
+                </div>
+                <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
+                    <a href="#experience" class="bg-gray-900 dark-mode:bg-white text-white dark-mode:text-gray-900 px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg font-medium flex items-center justify-center">
+                        <span>View Experience</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="#contact" class="bg-white dark-mode:bg-gray-800 text-gray-900 dark-mode:text-white border border-gray-300 dark-mode:border-gray-600 px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg font-medium flex items-center justify-center">
+                        <span>Contact Me</span>
+                        <i class="fas fa-envelope ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-16 text-center fade-in">Professional Summary</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="card p-8 md:p-12 rounded-3xl shadow-sm mb-12 fade-in dark-mode:dark-card">
+                    <p class="text-xl text-gray-700 dark-mode:text-gray-300 mb-6 leading-relaxed">
+                        Motivated and results-driven BI Developer and Data Engineer with a proven track record in business intelligence, data engineering, data warehouse, and data analytics projects.
+                    </p>
+                    <p class="text-xl text-gray-700 dark-mode:text-gray-300 leading-relaxed">
+                        Seeking to leverage my experience creating data pipelines to build storytelling dashboards and solve challenging data problems in a new role.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card p-8 rounded-3xl shadow-sm text-center stagger-item dark-mode:dark-card">
+                        <div class="w-20 h-20 bg-blue-100 dark-mode:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-database text-blue-600 dark-mode:text-blue-400 text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4">Data Engineering</h3>
+                        <p class="text-gray-600 dark-mode:text-gray-400">Expertise in ETL/ELT pipelines, Azure Data Factory, and data processing systems</p>
+                    </div>
+                    <div class="card p-8 rounded-3xl shadow-sm text-center stagger-item dark-mode:dark-card">
+                        <div class="w-20 h-20 bg-green-100 dark-mode:bg-green-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-chart-line text-green-600 dark-mode:text-green-400 text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4">Business Intelligence</h3>
+                        <p class="text-gray-600 dark-mode:text-gray-400">Creating storytelling dashboards with Power BI, DAX, and data modeling</p>
+                    </div>
+                    <div class="card p-8 rounded-3xl shadow-sm text-center stagger-item dark-mode:dark-card">
+                        <div class="w-20 h-20 bg-purple-100 dark-mode:bg-purple-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-cogs text-purple-600 dark-mode:text-purple-400 text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4">Data Management</h3>
+                        <p class="text-gray-600 dark-mode:text-gray-400">Database design, data structures, data migrations, and integrations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 accent-bg dark-mode:dark-accent-bg">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-16 text-center fade-in">Professional Experience</h2>
+            
+            <div class="max-w-4xl mx-auto space-y-12">
+                <!-- Experience 1 -->
+                <div class="card p-8 rounded-3xl shadow-sm fade-in dark-mode:dark-card">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
+                        <div>
+                            <h3 class="text-2xl font-semibold">Technology-Consulting</h3>
+                            <p class="text-gray-600 dark-mode:text-gray-400 text-lg">BI & Data Engineer</p>
+                        </div>
+                        <span class="text-blue-600 dark-mode:text-blue-400 font-medium mt-2 md:mt-0 bg-blue-100 dark-mode:bg-blue-900/30 px-4 py-2 rounded-full">Jan 2022 - July 2023</span>
+                    </div>
+                    <ul class="space-y-4 mt-6">
+                        <li class="timeline-item text-gray-700 dark-mode:text-gray-300">
+                            Interacted with users to gather requirements and convert them into technical solutions using ADF, Power BI, and SQL
+                        </li>
+                        <li class="timeline-item text-gray-700 dark-mode:text-gray-300">
+                            Performed data transformations using conditional split, data conversion, derived columns, and lookups
+                        </li>
+                        <li class="timeline-item text-gray-700 dark-mode:text-gray-300">
+                            Developed and maintained ADF pipelines including database design, ETL, and analysis integrations
+                        </li>
+                        <li class="timeline-item text-gray-700 dark-mode:text-gray-300">
+                            Optimized query performance with T-SQL modifications, normalized tables, and created indexes
+                        </li>
+                    </ul>
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <span class="tech-tag">Azure Data Factory</span>
+                        <span class="tech-tag">Power BI</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Data Lake</span>
+                    </div>
+                </div>
+                
+                <!-- Experience 2 -->
+                <div class="card p-8 rounded-3xl shadow-sm fade-in dark-mode:dark-card">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
+                        <div>
+                            <h3 class="text-2xl font-semibold">Oriental Insurance</h3>
+                            <p class="text-gray-600 dark-mode:text-gray-400 text-lg">BI Developer</p>
+                        </div>
+                        <span class="text-green-600 dark-mode:text-green-400 font-medium mt-2 md:mt-0 bg-green-100 dark-mode:bg-green-900/30 px-4 py-2 rounded-full">May 2019 - May 2020</span>
+                    </div>
+                    <ul class="space-y-4 mt-6">
+                        <li class="timeline-item text-gray-700 dark-mode:text-gray-300">
+                            Gathered and documented business requirements for analytical reports
+                        </li>
+                        <li class="timeline-item text-gray-700 dark-mode:text-gray-300">
+                            Designed and developed pipelines and dataflows in Azure Data Factory
+                        </li>
+                        <li class="timeline-item text-gray-700 dark-mode:text-gray-300">
+                            Implemented data quality processes including translation, parsing, analysis, and standardization
+                        </li>
+                        <li class="timeline-item text-gray-700 dark-mode:text-gray-300">
+                            Developed complex calculated measures using Data Analysis Expression language (DAX)
+                        </li>
+                    </ul>
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <span class="tech-tag">Azure Data Factory</span>
+                        <span class="tech-tag">Power BI</span>
+                        <span class="tech-tag">DAX</span>
+                        <span class="tech-tag">Data Quality</span>
+                    </div>
+                </div>
+                
+                <!-- Experience 3 -->
+                <div class="card p-8 rounded-3xl shadow-sm fade-in dark-mode:dark-card">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
+                        <div>
+                            <h3 class="text-2xl font-semibold">Greentech India</h3>
+                            <p class="text-gray-600 dark-mode:text-gray-400 text-lg">Data Engineer</p>
+                        </div>
+                        <span class="text-purple-600 dark-mode:text-purple-400 font-medium mt-2 md:mt-0 bg-purple-100 dark-mode:bg-purple-900/30 px-4 py-2 rounded-full">Dec 2018 - May 2019</span>
+                    </div>
+                    <ul class="space-y-4 mt-6">
+                        <li class="timeline-item text-gray-700 dark-mode:text-gray-300">
+                            Established relationships with stakeholders to promote effective data management strategies
+                        </li>
+                        <li class="timeline-item text-gray-700 dark-mode:text-gray-300">
+                            Developed and maintained end-to-end operations of ETL and ELT data pipelines
+                        </li>
+                        <li class="timeline-item text-gray-700 dark-mode:text-gray-300">
+                            Implemented various ADF components like pipeline, activity, mapping data flows, and triggers
+                        </li>
+                        <li class="timeline-item text-gray-700 dark-mode:text-gray-300">
+                            Designed, implemented, and promoted Power BI as enterprise reporting tool
+                        </li>
+                    </ul>
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <span class="tech-tag">ETL/ELT</span>
+                        <span class="tech-tag">Power BI</span>
+                        <span class="tech-tag">Tableau</span>
+                        <span class="tech-tag">Data Pipelines</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-16 text-center fade-in">Technical Skills</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+                    <div class="skill-icon text-center p-8 rounded-3xl card stagger-item dark-mode:dark-card">
+                        <i class="fab fa-microsoft text-blue-600 dark-mode:text-blue-400 text-5xl mb-6"></i>
+                        <h3 class="font-semibold text-lg">Azure Data Factory</h3>
+                    </div>
+                    <div class="skill-icon text-center p-8 rounded-3xl card stagger-item dark-mode:dark-card">
+                        <i class="fas fa-chart-bar text-yellow-600 dark-mode:text-yellow-400 text-5xl mb-6"></i>
+                        <h3 class="font-semibold text-lg">Power BI</h3>
+                    </div>
+                    <div class="skill-icon text-center p-8 rounded-3xl card stagger-item dark-mode:dark-card">
+                        <i class="fas fa-database text-green-600 dark-mode:text-green-400 text-5xl mb-6"></i>
+                        <h3 class="font-semibold text-lg">SQL & T-SQL</h3>
+                    </div>
+                    <div class="skill-icon text-center p-8 rounded-3xl card stagger-item dark-mode:dark-card">
+                        <i class="fas fa-project-diagram text-purple-600 dark-mode:text-purple-400 text-5xl mb-6"></i>
+                        <h3 class="font-semibold text-lg">Data Modeling</h3>
+                    </div>
+                    <div class="skill-icon text-center p-8 rounded-3xl card stagger-item dark-mode:dark-card">
+                        <i class="fas fa-code text-red-600 dark-mode:text-red-400 text-5xl mb-6"></i>
+                        <h3 class="font-semibold text-lg">DAX & Power Query</h3>
+                    </div>
+                    <div class="skill-icon text-center p-8 rounded-3xl card stagger-item dark-mode:dark-card">
+                        <i class="fas fa-stream text-indigo-600 dark-mode:text-indigo-400 text-5xl mb-6"></i>
+                        <h3 class="font-semibold text-lg">ETL/ELT Pipelines</h3>
+                    </div>
+                    <div class="skill-icon text-center p-8 rounded-3xl card stagger-item dark-mode:dark-card">
+                        <i class="fas fa-warehouse text-teal-600 dark-mode:text-teal-400 text-5xl mb-6"></i>
+                        <h3 class="font-semibold text-lg">Data Warehousing</h3>
+                    </div>
+                    <div class="skill-icon text-center p-8 rounded-3xl card stagger-item dark-mode:dark-card">
+                        <i class="fas fa-synapse text-pink-600 dark-mode:text-pink-400 text-5xl mb-6"></i>
+                        <h3 class="font-semibold text-lg">Azure Synapse</h3>
+                    </div>
+                </div>
+                
+                <!-- Skill Tags -->
+                <div class="mt-12">
+                    <h3 class="text-2xl font-semibold mb-8 text-center fade-in">Technologies & Tools</h3>
+                    <div class="flex flex-wrap justify-center gap-3 fade-in">
+                        <span class="tech-tag">Azure Data Factory</span>
+                        <span class="tech-tag">Power BI</span>
+                        <span class="tech-tag">SQL Server</span>
+                        <span class="tech-tag">Azure SQL DB</span>
+                        <span class="tech-tag">Data Lake</span>
+                        <span class="tech-tag">DAX</span>
+                        <span class="tech-tag">Power Query</span>
+                        <span class="tech-tag">Tableau</span>
+                        <span class="tech-tag">ETL/ELT</span>
+                        <span class="tech-tag">Data Pipelines</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 accent-bg dark-mode:dark-accent-bg">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-16 text-center fade-in">Education</h2>
+            
+            <div class="max-w-2xl mx-auto">
+                <div class="card p-8 rounded-3xl shadow-sm mb-8 fade-in dark-mode:dark-card">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start">
+                        <div>
+                            <h3 class="text-2xl font-semibold">Masters of Science (MSc)</h3>
+                            <p class="text-gray-600 dark-mode:text-gray-400 text-lg">Northumbria University</p>
+                        </div>
+                        <span class="text-blue-600 dark-mode:text-blue-400 font-medium mt-2 md:mt-0 bg-blue-100 dark-mode:bg-blue-900/30 px-4 py-2 rounded-full">2020 - 2022</span>
+                    </div>
+                </div>
+                
+                <div class="card p-8 rounded-3xl shadow-sm fade-in dark-mode:dark-card">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start">
+                        <div>
+                            <h3 class="text-2xl font-semibold">Bachelor's Degree</h3>
+                            <p class="text-gray-600 dark-mode:text-gray-400 text-lg">JNTU-K</p>
+                        </div>
+                        <span class="text-blue-600 dark-mode:text-blue-400 font-medium mt-2 md:mt-0 bg-blue-100 dark-mode:bg-blue-900/30 px-4 py-2 rounded-full">2012 - 2016</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-16 text-center fade-in">Get In Touch</h2>
+            
+            <div class="max-w-2xl mx-auto bg-gradient-to-r from-blue-50 to-indigo-50 dark-mode:from-blue-900/20 dark-mode:to-indigo-900/20 p-10 rounded-3xl shadow-sm border border-blue-100 dark-mode:border-blue-800 fade-in">
+                <p class="text-xl text-gray-700 dark-mode:text-gray-300 mb-8 text-center">
+                    Interested in working together or have questions about my experience?
+                </p>
+                <div class="flex justify-center">
+                    <a href="mailto:siva.poranki@example.com" class="gradient-bg text-white px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg flex items-center font-medium pulse">
+                        <i class="fas fa-envelope mr-3"></i> Contact Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-gray-900 dark-mode:bg-black text-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold">Siva Ramana M Poranki</h3>
+                    <p class="text-gray-400">BI & Data Engineer</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition text-xl">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-xl">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Siva Ramana M Poranki. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality - FIXED VERSION
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        const body = document.body;
+        
+        // Check for saved theme preference or respect OS preference
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const currentTheme = localStorage.getItem('theme');
+        
+        if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
+            enableDarkMode();
+        }
+        
+        function enableDarkMode() {
+            body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+            localStorage.setItem('theme', 'dark');
+            
+            // Update blob colors for dark mode
+            const blob1 = document.querySelector('.blob-1');
+            const blob2 = document.querySelector('.blob-2');
+            if (blob1) blob1.style.background = '#0056CC';
+            if (blob2) blob2.style.background = '#4A47A3';
+        }
+        
+        function disableDarkMode() {
+            body.classList.remove('dark-mode');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+            localStorage.setItem('theme', 'light');
+            
+            // Update blob colors for light mode
+            const blob1 = document.querySelector('.blob-1');
+            const blob2 = document.querySelector('.blob-2');
+            if (blob1) blob1.style.background = '#007AFF';
+            if (blob2) blob2.style.background = '#5856D6';
+        }
+        
+        themeToggle.addEventListener('click', function() {
+            if (body.classList.contains('dark-mode')) {
+                disableDarkMode();
+            } else {
+                enableDarkMode();
+            }
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const staggerItems = document.querySelectorAll('.stagger-item');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+            
+            // Stagger animation for grid items
+            staggerItems.forEach((item, index) => {
+                const elementTop = item.getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    // Add delay based on index for staggered effect
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        };
+        
+        // Set initial state and add scroll listener
+        window.addEventListener('load', fadeInOnScroll);
+        window.addEventListener('scroll', fadeInOnScroll);
+        
+        // Parallax effect for background blobs
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const blob1 = document.querySelector('.blob-1');
+            const blob2 = document.querySelector('.blob-2');
+            
+            if (blob1) blob1.style.transform = `translateY(${scrolled * 0.5}px)`;
+            if (blob2) blob2.style.transform = `translateY(${scrolled * -0.3}px)`;
+        });
+    </script>
+</body>
+</html>
